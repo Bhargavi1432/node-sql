@@ -1,0 +1,13 @@
+app.post("/users", (req, res) => {
+  const { name, age } = req.body;
+
+  const sql = "INSERT INTO users (name, age) VALUES (?, ?)";
+  
+  db.query(sql, [name, age], (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send("User added successfully");
+    }
+  });
+});
